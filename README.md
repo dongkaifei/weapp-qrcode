@@ -85,6 +85,7 @@ Type: Object
 | x | 非必须，二维码绘制的 x 轴起始位置，默认值0，v1.0.0+版本支持 | 100 |
 | y | 非必须，二维码绘制的 y 轴起始位置，默认值0，v1.0.0+版本支持 | 100 |
 | image | 非必须，在 canvas 上绘制图片，**层级高于二维码**，v1.0.0+版本支持，更多可参考[drawImage](https://developers.weixin.qq.com/miniprogram/dev/api/CanvasContext.drawImage.html) | `{ imageResource: '', dx: 0, dy: 0, dWidth: 100, dHeight: 100 }` |
+| bottomLayer | 非必须，底层图层颜色，默认值白色 | `'#ffffff'` |
 
 
 **位置信息可以参见下图：**
