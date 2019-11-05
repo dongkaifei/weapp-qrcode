@@ -36,7 +36,7 @@ var isPlainObject = function isPlainObject(obj) {
 	// Own properties are enumerated firstly, so to speed up,
 	// if last one is own, then all properties are own.
 	var key;
-	for (key in obj) { /**/ }
+	for (key in obj) {/**/}
 
 	return typeof key === 'undefined' || hasOwn.call(obj, key);
 };
@@ -70,7 +70,7 @@ var getProperty = function getProperty(obj, name) {
 	return obj[name];
 };
 
-var extend = function extend() {
+var _3_0_2_extend = function extend() {
 	var options, name, src, copy, copyIsArray, clone;
 	var target = arguments[0];
 	var i = 1;
@@ -84,7 +84,7 @@ var extend = function extend() {
 		// skip the boolean and the target
 		i = 2;
 	}
-	if (target == null || (typeof target !== 'object' && typeof target !== 'function')) {
+	if (target == null || typeof target !== 'object' && typeof target !== 'function') {
 		target = {};
 	}
 
@@ -111,7 +111,7 @@ var extend = function extend() {
 						// Never move original objects, clone them
 						setProperty(target, { name: name, newValue: extend(deep, clone, copy) });
 
-					// Don't bring in undefined values
+						// Don't bring in undefined values
 					} else if (typeof copy !== 'undefined') {
 						setProperty(target, { name: name, newValue: copy });
 					}
@@ -1212,7 +1212,7 @@ function utf16to8(str) {
 
 function drawQrcode(options) {
   options = options || {};
-  options = extend(true, {
+  options = _3_0_2_extend(true, {
     width: 256,
     height: 256,
     x: 0,
@@ -1221,6 +1221,7 @@ function drawQrcode(options) {
     correctLevel: QRErrorCorrectLevel.H,
     background: '#ffffff',
     foreground: '#000000',
+    bottomLayer: '#ffffff',
     image: {
       imageResource: '',
       dx: 0,
@@ -1254,7 +1255,9 @@ function drawQrcode(options) {
     // compute tileW/tileH based on options.width/options.height
     var tileW = options.width / qrcode.getModuleCount();
     var tileH = options.height / qrcode.getModuleCount();
-
+    // draw bottom layer
+    ctx.setFillStyle(options.bottomLayer);
+    ctx.fillRect(0, 0, options.x * 2 + options.width, options.y * 2 + options.height);
     // draw in the canvas
     for (var row = 0; row < qrcode.getModuleCount(); row++) {
       for (var col = 0; col < qrcode.getModuleCount(); col++) {

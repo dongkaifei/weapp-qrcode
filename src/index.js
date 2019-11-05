@@ -36,6 +36,7 @@ function drawQrcode (options) {
     correctLevel: QRErrorCorrectLevel.H,
     background: '#ffffff',
     foreground: '#000000',
+    bottomLayer: "#ffffff",
     image: {
       imageResource: '',
       dx: 0,
@@ -69,7 +70,9 @@ function drawQrcode (options) {
     // compute tileW/tileH based on options.width/options.height
     var tileW = options.width / qrcode.getModuleCount()
     var tileH = options.height / qrcode.getModuleCount()
-
+    // draw bottom layer 
+    ctx.setFillStyle(options.bottomLayer);
+    ctx.fillRect(0, 0, options.x*2 + options.width, options.y*2 + options.height);  
     // draw in the canvas
     for (var row = 0; row < qrcode.getModuleCount(); row++) {
       for (var col = 0; col < qrcode.getModuleCount(); col++) {
